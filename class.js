@@ -1,4 +1,5 @@
-/* Class-based inheritance model for JavaScript
+/*!
+ * Class-based inheritance model for JavaScript
  * Copyright (c) 2011, Pawel Preneta <jusuff@jabster.pl>
  * MIT Licensed (http://www.opensource.org/licenses/mit-license.php)
  * 
@@ -8,69 +9,11 @@
  * @version 1.0
  */
 
-/*
-// examples
-
-var Animal = Class.create({
-    init: function(name, sound) {
-        this.name  = name;
-        this.sound = sound;
-    },
-    speak: function() {
-        alert(this.name + " says: " + this.sound + "!");
-    }
-});
-
-// subclassing Animal
-var Snake = Class.create(Animal, {
-    init: function(name) {
-        this._super('init', name, 'hissssssssss');
-    }
-});
-var ringneck = new Snake("Ringneck");
-ringneck.speak();
-//-> alerts "Ringneck says: hissssssss!"
-
-// adding Snake#speak (with a supercall)
-Snake.addMethods({
-    speak: function() {
-        this._super('speak');
-        alert("You should probably run. He looks really mad.");
-    }
-});
-ringneck.speak();
-//-> alerts "Ringneck says: hissssssss!"
-//-> alerts "You should probably run. He looks really mad."
-
-// redefining Animal#speak
-Animal.addMethods({
-    speak: function() {
-        alert(this.name + 'snarls: ' + this.sound + '!');
-    }
-});
-ringneck.speak();
-//-> alerts "Ringneck snarls: hissssssss!"
-//-> alerts "You should probably run. He looks really mad."
-
-// adding static methods
-Class.extend(Animal, {
-    staticMethod: function() {
-        alert('This one is static');
-    }
-});
-Animal.staticMethod();
-//-> alerts "This one is static"
-
-// creating new instance and passing an array of arguments
-var args = ['name', 'sound'];
-var instance = Class.init(Animal, args);
-
- **/
-
 var Class = (function(){
     var fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
 
     function create() {
+        "klass:nomunge"; // do not obfuscate constructor name 
         var parent = null, args = Array.prototype.slice.call(arguments);
         if (typeof args[0] == "function") {
             parent = args.shift();
@@ -104,9 +47,12 @@ var Class = (function(){
         return klass;
     }
 
-    function extend(dest, source) {
+    function extend(dest, source, safe) {
+        safe = safe || false;
         for (var prop in source) {
-            dest[prop] = source[prop];
+            if (!dest[prop] || !safe) {
+                dest[prop] = source[prop];
+            }
         }
         return dest;
     }
