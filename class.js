@@ -1,11 +1,13 @@
-/**!
- * Class-based inheritance model for JavaScript
+/*!
+ * Class-based inheritance model for JavaScript v1.0
  * Copyright (c) 2011, Pawel Preneta <jusuff@jabster.pl>
  * MIT Licensed (http://www.opensource.org/licenses/mit-license.php)
- * 
+ */
+/**
  * @fileOverview Class-based inheritance model for JavaScript
  * @version 1.0
  */
+
 
 /**
  * Class for managing class-based inheritance.<br />
