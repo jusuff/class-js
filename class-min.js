@@ -1,0 +1,6 @@
+/*!
+ * Class-based inheritance model for JavaScript v1.0
+ * Copyright (c) 2011, Pawel Preneta <jusuff@jabster.pl>
+ * MIT Licensed (http://www.opensource.org/licenses/mit-license.php)
+ */
+var Class=(function(){var d=/xyz/.test(function(){xyz})?/\b_super\b/:/.*/;function c(){var j=null,g=Array.prototype.slice.call(arguments);if(typeof g[0]=="function"){j=g.shift()}function klass(){this.init.apply(this,arguments)}e(klass,a);klass.superclass=j;klass.subclasses=[];if(j){var f=function(){};f.prototype=j.prototype;klass.prototype=new f;j.subclasses.push(klass)}for(var h=0;h<g.length;h++){klass.addMethods(g[h])}if(!klass.prototype.init){klass.prototype.init=function(){}}klass.prototype.constructor=klass;return klass}function e(f,h,g){g=g||false;for(var i in h){if(!f[i]||!g){f[i]=h[i]}}return f}function b(f,g){function h(){return f.apply(this,g)}h.prototype=f.prototype;return new h()}var a={addMethods:function(h){var g=this.superclass&&this.superclass.prototype;for(var f in h){this.prototype[f]=typeof h[f]=="function"&&g&&typeof g[f]=="function"&&d.test(h[f])?(function(i,j){return function(){this._super=function(k){return g[k].apply(this,Array.prototype.slice.call(arguments,1))};return j.apply(this,arguments)}})(f,h[f]):h[f]}return this}};return{create:c,extend:e,construct:b}})();
