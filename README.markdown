@@ -3,7 +3,8 @@
 ## About
 
 Yet another javascript Class for managing class-based inheritance. 
-It's mostly based on Prototype's Class (but independent of Prototype.js and in fact fully "framework-agnostic") with some minor changes.
+It's mostly based on Prototype's Class (but independent of Prototype.js and in fact fully "framework-agnostic")
+with some ideas from John Resig's [Simple Class](http://ejohn.org/blog/simple-javascript-inheritance/).
 
 Main difference is the way of super method calls. It's done by "_super" method which takes method name as first param:
 
