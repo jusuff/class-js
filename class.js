@@ -216,6 +216,61 @@ var Class = (function() {
             }
 
             return this;
+        },
+        /**
+         * Gets the class methods' names 
+         * 
+         * @example
+         *  var Animal = Class.create({
+         *      init: function(name, sound) {
+         *          this.name  = name;
+         *          this.sound = sound;
+         *      },
+         *      speak: function() {
+         *          alert(this.name + ' says: ' + this.sound + '!');
+         *      }
+         *  });
+         *  Animal.getMethods(); // returns ['init', 'speak']
+         *  
+         * @name Class#getMethods
+         * @function
+         * 
+         * @return {Array} Array of class methods names
+         */
+        getMethods: function() {
+            var methods = [];
+            for (var name in this.prototype) {
+                if (name != 'constructor' && typeof this.prototype[name] == "function") {
+                    methods.push(name);
+                }
+            }
+            return methods;
+        },
+        /**
+         * Checks if the class method exists
+         * 
+         * @example
+         *  var Animal = Class.create({
+         *      init: function(name, sound) {
+         *          this.name  = name;
+         *          this.sound = sound;
+         *      },
+         *      speak: function() {
+         *          alert(this.name + ' says: ' + this.sound + '!');
+         *      }
+         *  });
+         *  Animal.hasMethod('speak'); // returns true
+         *  Animal.hasMethod('speakQuietly'); // returns false
+         * 
+         * @name Class#hasMethod
+         * @function
+         * 
+         * @param {String} name Method name to check
+         * 
+         * @return {Boolean}
+         */
+        hasMethod: function(name) {
+            return typeof this.prototype[name] == "function";
         }
     };
 

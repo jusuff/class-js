@@ -10,8 +10,9 @@ Main difference is the way of super method calls. It's done by "_super" method w
 
     this._super('parentsMethod', arg1, arg2, ... );
 
-One more difference in new feature "Class.construct" which allows to simulate "apply()"
-on class cunstructor to init new instance with arguments list (see examples).
+One more difference are utility methods:
+* "Class.construct" which allows to simulate "apply()" on class cunstructor to init new instance with arguments list (see examples).
+* getMethods and hasMethods for get/check class methods.
 
 Released under the MIT License.
 
@@ -68,6 +69,15 @@ Notice that new methods are added (or redefined) to all subclasses as well as th
         }
     });
     Animal.staticMethod(); // alerts "This one is static"
+
+### Get all class methods
+
+    Animal.getMethods(); // returns ['init', 'speak']
+
+### Check if the class method exists
+
+    Animal.hasMethod('speak'); // returns true
+    Animal.hasMethod('speakQuietly'); // returns false
 
 ### Creating new instance and passing an array of arguments
 
