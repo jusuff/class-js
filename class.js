@@ -51,9 +51,9 @@ var Class = (function() {
      *  var ringneck = new Snake('Ringneck');
      *  ringneck.speak(); // alerts "Ringneck says: hissssssss!"
      * 
-	 * @name Class.create
+     * @name Class.create
      * @static
-	 * @function
+     * @function
      * 
      * @param {Class} [superclass] Optional superclass to extend
      * @param {Object} methods One or more objects with methods for new class
@@ -119,9 +119,9 @@ var Class = (function() {
      *  });
      *  Animal.staticMethod(); // alerts "Animal.staticMethod called!"
      * 
-	 * @name Class.extend
+     * @name Class.extend
      * @static
-	 * @function
+     * @function
      * 
      * @param {Object} dest Destination object, where new properties will be copied
      * @param {Object} source Source object
@@ -147,9 +147,9 @@ var Class = (function() {
      *  var args = ['some name', 'some sound'];
      *  var instance = Class.construct(Animal, args); // works the same as new Animal('some name', 'some sound');
      * 
-	 * @name Class.construct
+     * @name Class.construct
      * @static
-	 * @function
+     * @function
      * 
      * @param {Class} klass Class object
      * @param {Mixed} args Arguments to pass to klass constructor
