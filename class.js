@@ -28,7 +28,7 @@ var Class = (function() {
      *   if given - all its methods and properties are inherited by created class;
      *   one can access parent's methods calling "super" method (see examples)<br />
      * - other params are objects, which methods are copied to new class; if there's
-     *   more then one object and method names are overlapping, later one take prcedence.
+     *   more then one object and method names are overlapping, later one take precedence.
      * 
      * @example
      *  // create base class
