@@ -31,39 +31,39 @@ var Class = (function() {
      *   more then one object and method names are overlapping, later one take precedence.
      * 
      * @example
-     *  // create base class
-     *  var Animal = Class.create({
-     *      init: function(name, sound) {
-     *          this.name  = name;
-     *          this.sound = sound;
-     *      },
-     *      speak: function() {
-     *          alert(this.name + ' says: ' + this.sound + '!');
-     *      }
-     *  });
-     *  // extend base class
-     *  var Snake = Class.create(Animal, {
-     *      init: function(name) {
-     *          this._super('init', name, 'hissssssssss');
-     *      }
-     *  });
-     *  // create instance
-     *  var ringneck = new Snake('Ringneck');
-     *  ringneck.speak(); // alerts "Ringneck says: hissssssss!"
+     * // create base class
+     * var Animal = Class.create({
+     *     init: function(name, sound) {
+     *         this.name  = name;
+     *         this.sound = sound;
+     *     },
+     *     speak: function() {
+     *         alert(this.name + ' says: ' + this.sound + '!');
+     *     }
+     * });
+     * // extend base class
+     * var Snake = Class.create(Animal, {
+     *     init: function(name) {
+     *         this._super('init', name, 'hissssssssss');
+     *     }
+     * });
+     * // create instance
+     * var ringneck = new Snake('Ringneck');
+     * ringneck.speak(); // alerts "Ringneck says: hissssssss!"
      * 
      * @name Class.create
      * @static
      * @function
      * 
      * @param {Class} [superclass] Optional superclass to extend
-     * @param {Object} methods One or more objects with methods for new class
+     * @param {Object} methods     One or more objects with methods for new class
      * 
      * @return {Class} Class constructor
      */
     function create() {
-        "klass:nomunge"; // do not obfuscate constructor name 
+        'klass:nomunge'; // do not obfuscate constructor name
         var parent = null, args = Array.prototype.slice.call(arguments);
-        if (typeof args[0] == "function") {
+            if (typeof args[0] === 'function') {
             parent = args.shift();
         }
 
@@ -78,7 +78,7 @@ var Class = (function() {
         if (parent) {
             var subclass = function() {};
             subclass.prototype = parent.prototype;
-            klass.prototype = new subclass;
+            klass.prototype = new subclass();
             parent.subclasses.push(klass);
         }
 
@@ -101,30 +101,31 @@ var Class = (function() {
      * This can be avoided with safe param set to true.
      * 
      * @example
-     *  // simple usage
-     *  var dest = {
-     *          a: 1
-     *      },
-     *      source = {
-     *          a: 2,
-     *          b: true
-     *      };
-     *  Class.extend(dest, source, true); // dest is now {a: 1, b: true}
-     *  
-     *  // extend Animal class with some static method
-     *  Class.extend(Animal, {
-     *      staticMethod: function() {
-     *          alert('Animal.staticMethod called!');
-     *      }
-     *  });
-     *  Animal.staticMethod(); // alerts "Animal.staticMethod called!"
+     * // simple usage
+     * var dest = {
+     *         a: 1
+     *     },
+     *     source = {
+     *         a: 2,
+     *         b: true
+     *     };
+     * Class.extend(dest, source, true); // dest is now {a: 1, b: true}
+     *
+     * // extend Animal class with some static method
+     * Class.extend(Animal, {
+     *     staticProp: true,
+     *     staticMethod: function() {
+     *         alert('Animal.staticMethod called!');
+     *     }
+     * });
+     * Animal.staticMethod(); // alerts "Animal.staticMethod called!"
      * 
      * @name Class.extend
      * @static
      * @function
      * 
-     * @param {Object} dest Destination object, where new properties will be copied
-     * @param {Object} source Source object
+     * @param {Object}   dest        Destination object, where new properties will be copied
+     * @param {Object}   source      Source object
      * @param {Boolean} [safe=false] If set to true, the destination object properties won't be overwritten
      * 
      * @return {Object} Extended object
@@ -144,15 +145,15 @@ var Class = (function() {
      * Allows to simulate use of .apply() on class constructor.
      * 
      * @example
-     *  var args = ['some name', 'some sound'];
-     *  var instance = Class.construct(Animal, args); // works the same as new Animal('some name', 'some sound');
+     * var args = ['some name', 'some sound'];
+     * var instance = Class.construct(Animal, args); // works the same as new Animal('some name', 'some sound');
      * 
      * @name Class.construct
      * @static
      * @function
      * 
      * @param {Class} klass Class object
-     * @param {Mixed} args Arguments to pass to klass constructor
+     * @param {*}     args  Arguments to pass to klass constructor
      * 
      * @return {Class} New instance of given klass
      */
@@ -171,27 +172,27 @@ var Class = (function() {
          * New methods are added to all subclasses as well as the already instantiated instances.
          * 
          * @example
-         *  var Animal = Class.create({
-         *      init: function(name, sound) {
-         *          this.name  = name;
-         *          this.sound = sound;
-         *      },
-         *      speak: function() {
-         *          alert(this.name + ' says: ' + this.sound + '!');
-         *      }
-         *  });
-         *  var Bird = Class.create(Animal, {
-         *      init: function(sound) {
-         *          this._super('init', 'Bird', sound);
-         *      }
-         *  });
-         *  var littleBird = new Bird('Bird', 'tweet, tweet');
-         *  Animal.addMethods({
-         *      speakLoud: function() {
-         *          alert(this.name + ' says: ' + this.sound.toUpperCase() + '!');
-         *      }
-         *  });
-         *  littleBird.speakLoud(); // alerts "Bird says: TWEET, TWEET!"
+         * var Animal = Class.create({
+         *     init: function(name, sound) {
+         *         this.name  = name;
+         *         this.sound = sound;
+         *     },
+         *     speak: function() {
+         *         alert(this.name + ' says: ' + this.sound + '!');
+         *     }
+         * });
+         * var Bird = Class.create(Animal, {
+         *     init: function(sound) {
+         *         this._super('init', 'Bird', sound);
+         *     }
+         * });
+         * var littleBird = new Bird('Bird', 'tweet, tweet');
+         * Animal.addMethods({
+         *     speakLoud: function() {
+         *         alert(this.name + ' says: ' + this.sound.toUpperCase() + '!');
+         *     }
+         * });
+         * littleBird.speakLoud(); // alerts "Bird says: TWEET, TWEET!"
          * 
          * @name Class#addMethods
          * @function
@@ -204,8 +205,8 @@ var Class = (function() {
             var ancestor = this.superclass && this.superclass.prototype;
 
             for (var name in source) {
-                this.prototype[name] = typeof source[name] == "function" &&
-                    ancestor && typeof ancestor[name] == "function" && fnTest.test(source[name]) ? (function(name, fn){
+                this.prototype[name] = typeof source[name] === 'function' &&
+                    ancestor && typeof ancestor[name] === 'function' && fnTest.test(source[name]) ? (function(name, fn){
                     return function() {
                         this._super = function(method) {
                             return ancestor[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -221,16 +222,16 @@ var Class = (function() {
          * Gets the class methods' names 
          * 
          * @example
-         *  var Animal = Class.create({
-         *      init: function(name, sound) {
-         *          this.name  = name;
-         *          this.sound = sound;
-         *      },
-         *      speak: function() {
-         *          alert(this.name + ' says: ' + this.sound + '!');
-         *      }
-         *  });
-         *  Animal.getMethods(); // returns ['init', 'speak']
+         * var Animal = Class.create({
+         *     init: function(name, sound) {
+         *         this.name  = name;
+         *         this.sound = sound;
+         *     },
+         *     speak: function() {
+         *         alert(this.name + ' says: ' + this.sound + '!');
+         *     }
+         * });
+         * Animal.getMethods(); // returns ['init', 'speak']
          *  
          * @name Class#getMethods
          * @function
@@ -240,7 +241,7 @@ var Class = (function() {
         getMethods: function() {
             var methods = [];
             for (var name in this.prototype) {
-                if (name != 'constructor' && typeof this.prototype[name] == "function") {
+                if (name !== 'constructor' && typeof this.prototype[name] === 'function') {
                     methods.push(name);
                 }
             }
@@ -250,27 +251,27 @@ var Class = (function() {
          * Checks if the class method exists
          * 
          * @example
-         *  var Animal = Class.create({
-         *      init: function(name, sound) {
-         *          this.name  = name;
-         *          this.sound = sound;
-         *      },
-         *      speak: function() {
-         *          alert(this.name + ' says: ' + this.sound + '!');
-         *      }
-         *  });
-         *  Animal.hasMethod('speak'); // returns true
-         *  Animal.hasMethod('speakQuietly'); // returns false
+         * var Animal = Class.create({
+         *     init: function(name, sound) {
+         *         this.name  = name;
+         *         this.sound = sound;
+         *     },
+         *     speak: function() {
+         *         alert(this.name + ' says: ' + this.sound + '!');
+         *     }
+         * });
+         * Animal.hasMethod('speak'); // returns true
+         * Animal.hasMethod('speakQuietly'); // returns false
          * 
          * @name Class#hasMethod
          * @function
-         * 
+         *
          * @param {String} name Method name to check
-         * 
+         *
          * @return {Boolean}
          */
         hasMethod: function(name) {
-            return typeof this.prototype[name] == "function";
+            return typeof this.prototype[name] === 'function';
         }
     };
 
