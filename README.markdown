@@ -79,6 +79,15 @@ Notice that new methods are added (or redefined) to all subclasses as well as th
     Animal.hasMethod('speak'); // returns true
     Animal.hasMethod('speakQuietly'); // returns false
 
+### Get all class static properties
+
+    Animal.getStaticProperties(); // returns ['staticMethod']
+
+### Check if the class static property exists
+
+    Animal.hasStaticProperty('staticMethod'); // returns true
+    Animal.hasStaticProperty('anotherStaticMethod'); // returns false
+
 ### Creating new instance and passing an array of arguments
 
     var args = ['some name', 'some sound'];

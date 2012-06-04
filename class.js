@@ -221,7 +221,7 @@ var Class = (function() {
                 return this;
             },
             /**
-             * Gets the class methods' names
+             * Gets the class methods' names.
              *
              * @example
              * var Animal = Class.create({
@@ -250,7 +250,7 @@ var Class = (function() {
                 return methods;
             },
             /**
-             * Checks if the class method exists
+             * Checks if the class method exists.
              *
              * @example
              * var Animal = Class.create({
@@ -276,7 +276,8 @@ var Class = (function() {
                 return typeof this.prototype[name] === 'function';
             },
             /**
-             * Gets the class static properties names
+             * Gets the class static properties names.<br />
+             * Internal properties and methods (such as superclass, subclasses etc) are ignored.
              *
              * @example
              * Class.extend(Animal, {
@@ -304,7 +305,8 @@ var Class = (function() {
                 return properties;
             },
             /**
-             * Checks if the class static property exists
+             * Checks if the class static property exists.
+             * Internal properties and methods (such as superclass, subclasses etc) are ignored.
              *
              * @example
              * Class.extend(Animal, {
